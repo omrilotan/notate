@@ -1,7 +1,19 @@
 {
   "name": "notate",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Resolve dot notation strings",
+  "keywords": [
+    "string",
+    "dot",
+    "notation",
+    "resolve",
+    "key",
+    "value",
+    "object",
+    "array",
+    "map",
+    "set"
+  ],
   "author": "omrilotan",
   "license": "UNLICENSE",
   "repository": {

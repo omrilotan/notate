@@ -2,7 +2,7 @@
 
 Resolve dot notation strings
 
-```js
+```ts
 import { notate } from "notate";
 
 const obj = {
@@ -19,9 +19,19 @@ notate(obj, "top_level.missing.value"); // undefined
 
 Resolve list notation as well
 
-```js
+```ts
 const obj = {
 	list: [{ name: "Alice" }, { name: "Bob" }],
 };
 notate(obj, "list[1].name"); // 'Bob'
+```
+
+Supports Map and Set
+
+```ts
+const map = new Map([["key", { chain: "value" }]]);
+notate(map, "key.chain"); // 'value'
+
+const set = new Set([{ chain: "value" }]);
+notate(set, "[0].chain"); // 'value'
 ```

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.1.0
+
+- New Feature: Support Map and Set
+- Fix: missing nested properties falling back on previous cell value
+- Fix: Support array notation from first cell `notate(set, "[0].chain")`
+
 ## 2.0.0
 
 - Breaking: Change to a named export.
