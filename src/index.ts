@@ -29,8 +29,10 @@ export function notate(
 		.replace(/\[(\d+)]/g, ".$1") // Array notation rest of the cells
 		.split(".")
 		.reduce((previous: any, current: string): any => {
-			if (previous instanceof Map) return previous.get(current);
-			if (previous instanceof Set) return getNthItem(previous, Number(current));
+			if (previous instanceof Map)
+				return previous.get(current) ?? previous[current];
+			if (previous instanceof Set)
+				return getNthItem(previous, Number(current)) ?? previous[current];
 			if (previous === null) return undefined;
 			return previous?.[current];
 		}, source);

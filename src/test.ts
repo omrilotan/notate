@@ -20,6 +20,17 @@ describe("notate", () => {
 	test("an object", () => {
 		expect(notate(dummy, "top.middle.low")).toBe("value");
 	});
+	test("inheritance", () => {
+		class Car {
+			constructor(public brand: string) {}
+			get brandName() {
+				return this.brand;
+			}
+		}
+		const car = new Car("Toyota");
+		expect(Object.hasOwn(car, "brandName")).toBe(false);
+		expect(notate(car, "brandName")).toBe("Toyota");
+	});
 	test("missing data", () => {
 		expect(notate(dummy, "missing.data")).toBeUndefined();
 	});
@@ -43,6 +54,7 @@ describe("notate", () => {
 			["missing", "value"],
 		]);
 		expect(notate({ map }, "map.key.chain")).toBe("balue");
+		expect(notate({ map }, "map.size")).toBe(2);
 		expect(notate({ map }, "map.missing.key")).toBeUndefined();
 	});
 	test("Set", () => {
@@ -51,5 +63,10 @@ describe("notate", () => {
 		expect(notate(set, "[2].chain")).toBe("free");
 		expect(notate({ set }, "set[1]")).toBe("balue");
 		expect(notate({ set }, "set[5]")).toBeUndefined();
+	});
+	test("Set attribute", () => {
+		const set = new Set<any>(["key", "balue", { chain: "free" }]);
+		expect(notate({ set }, "set.size")).toBe(3);
+		expect(notate({ set }, "set.property")).toBeUndefined();
 	});
 });
